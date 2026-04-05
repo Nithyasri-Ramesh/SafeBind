@@ -140,6 +140,15 @@ function updateClock() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     document.getElementById('clock').innerText = `${hours}:${minutes}`;
 }
+function speak(text) {
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    msg.rate = 0.9; // Slightly slower for seniors
+    window.speechSynthesis.speak(msg);
+}
+
+// Example: Call this when the SOS starts
+// speak("Emergency alert activated. Help is on the way.");
 
 // Keep the clock ticking every minute
 setInterval(updateClock, 60000);
