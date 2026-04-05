@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SafeBind Pro | ABDM Powered</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="system-tray">
+        <span id="clock">12:00</span> 
+        <span class="secure-tag">● ABDM SECURE</span>
+    </div>
+
+    <main id="app-shell">
+        <section id="screen-login" class="view">
+            <div class="user-profile">
+                <h1>Link Health ID</h1>
+                <p>Enter your ABHA details to sync records.</p>
+            </div>
+            <div class="login-box">
+                <input type="text" id="user-name-input" placeholder="Your Full Name" class="input-field">
+                <input type="number" id="abha-id" placeholder="14-digit ABHA ID" class="input-field">
+                <button class="action-btn" onclick="registerUser()">Link My Records</button>
+            </div>
+        </section>
+
+        <section id="screen-home" class="view hidden">
+            <div class="user-profile">
+                <h1 id="display-name">Jane Doe</h1>
+                <p>ABHA Status: <span class="score">Verified ●</span></p>
+            </div>
+            <div class="action-grid">
+                <div class="tile blur" onclick="startAuth()">
+                    <div class="tile-icon">📂</div>
+                    <div class="tile-label">Records</div>
+                </div>
+                <div class="tile blur" onclick="showMeds()">
+                    <div class="tile-icon">💊</div>
+                    <div class="tile-label">Meds</div>
+                </div>
+                <div class="tile blur" onclick="showCare()">
+                    <div class="tile-icon">🤝</div>
+                    <div class="tile-label">Care Team</div>
+                </div>
+                <div class="tile sos-tile" onclick="launchSOS()">
+                    <div class="tile-icon">🚨</div>
+                    <div class="tile-label">SOS</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-records" class="view hidden">
+            <button class="nav-back" onclick="goHome()">← Back</button>
+            <h2>Medical Vault</h2>
+            <div class="entry"><b>Blood Work</b><br><small>ABDM Verified - March 2026</small></div>
+            <div class="entry"><b>Heart Scan</b><br><small>Apollo Hospital - Feb 2026</small></div>
+            <div class="entry"><b>Prescription</b><br><small>Dr. Mehta - Jan 2026</small></div>
+        </section>
+
+        <div id="biometric-gate" class="overlay hidden">
+            <div class="modal-card">
+                <h2>Security Check</h2>
+                <div class="scanner" onclick="processAuth()">
+                    <div class="laser"></div>
+                    <span class="finger-emoji">👆</span>
+                </div>
+                <p>Tap to verify identity</p>
+                <button class="ghost-btn" onclick="hideOverlay('biometric-gate')">Cancel</button>
+            </div>
+        </div>
+
+        <div id="info-modal" class="overlay hidden">
+            <div class="modal-card">
+                <h2 id="info-title">Status</h2>
+                <div id="info-body" class="info-content"></div>
+                <button class="action-btn" onclick="hideOverlay('info-modal')">Close</button>
+            </div>
+        </div>
+
+        <div id="sos-module" class="overlay hidden">
+            <div class="sos-alert">
+                <h1>EMERGENCY</h1>
+                <div class="timer-display" id="timer">5</div>
+                <p>Alerting Family & ABDM Portal...</p>
+                <button class="stop-btn" onclick="abortSOS()">I AM SAFE (CANCEL)</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
